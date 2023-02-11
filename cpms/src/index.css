@@ -2,3 +2,25 @@
   margin:0px;
   padding:0px;
 }
+a,a:hover{
+  text-decoration: none;
+  text-decoration-color: white;
+  text-decoration-style: none;
+  color: white;
+}
+.text{
+font-size: 18px;
+}
+
+.gray{
+  color:rgb(94, 94, 94)
+}
+.link:hover{
+  text-decoration: underline;
+  color:rgb(171, 171, 171)
+
+
+}
+.link{
+color:brown
+}

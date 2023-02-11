@@ -1,26 +1,26 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import Main from "./assets/Screens/Main";
+import Views from "./assets/Screens/Views";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Navbars from "./assets/components/Navbar";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Start from "./assets/Screens/Start";
+import Exit from "./assets/Screens/Exit";
 
 function App() {
-  const [plate, setPlate] = useState("");
-  const [plateImg, setPlateImg] = useState("");
-  const fetchRequest = async () => {
-    const response = await fetch("http://127.0.0.1:8000/");
-    const res = await response.json();
-    console.log(res);
-    setPlate(res.message);
-    setPlateImg(res.file);
-  };
-  useEffect(() => {
-    fetchRequest();
-  }, []);
-
   return (
     <div className="App">
-      {/* <img src="yolov5 inference\cropped1.jpg" alt="Image" /> */}
-      {plate && <img src={`data:image/jpeg;base64,${plateImg}`} />}
+      {/* <Main /> */}
 
-      <h1>{plate}</h1>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Start />} />
+          <Route path="/records" element={<Views />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/exit" element={<Exit />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

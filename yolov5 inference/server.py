@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, File, UploadFile
 from fastapi.responses import FileResponse
 from yolov5_tflite_webcam_inference import detect_video
 from fastapi.middleware.cors import CORSMiddleware
@@ -54,10 +54,17 @@ async def root():
 
 @app.post("/api/v1/upload/")
 async def publish(request: schemas.UserCreate, db: Session = Depends(get_db)):
-    new_user = model.User(title=request.title, body=request.body)
+    new_user = model.User(numOfPass=request.numOfPass,
+                          plateImg=request.plateImg, numberPlate=request.numberPlate)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
     return new_user
 
-    return
+
+@app.get("/api/v1/")
+async def getAll(db: Session = Depends(get_db)):
+
+    users = db.query(model.User).all()
+
+    return users

@@ -2,6 +2,6 @@ from pydantic import BaseModel
 
 
 class UserCreate(BaseModel):
-    id: int
+    numOfPass: int
     numberPlate: str
     plateImg: str
