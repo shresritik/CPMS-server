@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Button, Form, Navbar } from "react-bootstrap";
+import { Alert, Button, Form, Navbar } from "react-bootstrap";
 import { redirect, useNavigate } from "react-router-dom";
 import Navbars from "../components/Navbar";
 
 function Main() {
   const [plate, setPlate] = useState("");
   const [plateImg, setPlateImg] = useState("");
+  const [alert, setAlert] = useState(false);
   const [numOfPass, setNumOfPass] = useState(Number);
   const navigator = useNavigate();
   const fetchRequest = async () => {
@@ -48,13 +49,22 @@ function Main() {
     postRequest();
     setPlate("");
     setNumOfPass();
-    alert("Form submitted");
-    return navigator("/exit");
+    setAlert(true);
+    setTimeout(() => {
+      return navigator("/exit");
+    }, 4000);
+
+    // alert("Form submitted");
   };
   return (
     <>
       <Navbars />
       <div className="main container">
+        {alert && (
+          <Alert className="" variant={"success"}>
+            Form Submitted, Redirecting to Exit.
+          </Alert>
+        )}
         <Form className="mt-5">
           <Form.Group className="mb-3">
             <Form.Label>Number of Passengers</Form.Label>
