@@ -97,7 +97,7 @@ async def new_driver(request: schemas.DriverCreate, db: Session = Depends(get_db
 
 
 @app.get("/api/v1/driver/{id}")
-async def getAll(id, db: Session = Depends(get_db)):
+async def getDriver(id, db: Session = Depends(get_db)):
     # e.g. http://localhost:8000/api/v1/driver/11
     # GEt one driver
     print(f"driver: {model.Driver}")
@@ -112,7 +112,7 @@ async def getAll(id, db: Session = Depends(get_db)):
 
 
 @app.get("/api/v1/drivers")
-async def getAll(db: Session = Depends(get_db)):
+async def getAllDrivers(db: Session = Depends(get_db)):
     # Get all the drivers
     print(f"driver: {model.Driver}")
     drivers = db.query(model.Driver).order_by(desc(model.Driver.id)).all()
@@ -122,11 +122,11 @@ async def getAll(db: Session = Depends(get_db)):
     # return {"hi": "Hello"}
 
 
-@app.get("/api/user_data/{fingerprint_id}")
-async def getAll(fingerprint_id, db: Session = Depends(get_db)):
-    db.query(model.Driver).filter(
-        model.Driver.fingerprint_id == id).delete(synchronize_session=False)
-    model.Driver
-    db.commit()
-    users = db.query(model.User).order_by(desc(model.User.id)).all()
-    return users
+# @app.get("/api/user_data/{fingerprint_id}")
+# async def getAll(fingerprint_id, db: Session = Depends(get_db)):
+#     db.query(model.Driver).filter(
+#         model.Driver.fingerprint_id == id).delete(synchronize_session=False)
+#     model.Driver
+#     db.commit()
+#     users = db.query(model.User).order_by(desc(model.User.id)).all()
+#     return users
