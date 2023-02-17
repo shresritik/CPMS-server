@@ -65,7 +65,7 @@ async def publish(request: schemas.UserCreate, db: Session = Depends(get_db)):
 
 @app.get("/api/v1/")
 async def getAll(db: Session = Depends(get_db)):
-
+    print(f"user: {model.User}")
     users = db.query(model.User).order_by(desc(model.User.id)).all()
     return users
 
@@ -77,3 +77,56 @@ async def deleteId(id, db: Session = Depends(get_db)):
         model.User.id == id).delete(synchronize_session=False)
     db.commit()
     return {"deleted": "true"}
+
+# --------------------------------
+# Fingerprint data Integration
+# --------------------------------
+
+
+@app.post("/api/v1/new_driver/")
+async def new_driver(request: schemas.DriverCreate, db: Session = Depends(get_db)):
+    # Create new driver
+    new_driver = model.Driver(username=request.username,
+                              license_img=request.license_img, expiry_date=request.expiry_date, finger_id=request.finger_id)
+    print(f"\n\nrequest: {request}")
+    db.add(new_driver)
+    db.commit()
+    db.refresh(new_driver)
+    return new_driver
+    # return {"hi": "hello"}
+
+
+@app.get("/api/v1/driver/{id}")
+async def getAll(id, db: Session = Depends(get_db)):
+    # e.g. http://localhost:8000/api/v1/driver/11
+    # GEt one driver
+    print(f"driver: {model.Driver}")
+    # driver = db.query(model.Driver).order_by(
+    #     desc(model.Driver.id)).all()
+    # driver = db.query(model.Driver).filter_by(finger_id=id).first()
+    driver = db.query(model.Driver).filter(
+        model.Driver.finger_id == id).first()
+    print(f"\n\n driver: {driver.expiry_date}")
+    return driver
+    # return {"hi": "Hello"}
+
+
+@app.get("/api/v1/drivers")
+async def getAll(db: Session = Depends(get_db)):
+    # Get all the drivers
+    print(f"driver: {model.Driver}")
+    drivers = db.query(model.Driver).order_by(desc(model.Driver.id)).all()
+    # driver = db.query(model.Driver).order_by(
+    #     desc(model.Driver.id)).filter_by(id=id).first()
+    return drivers
+    # return {"hi": "Hello"}
+
+
+@app.get("/api/user_data/{fingerprint_id}")
+async def getAll(fingerprint_id, db: Session = Depends(get_db)):
+    db.query(model.Driver).filter(
+        model.Driver.fingerprint_id == id).delete(synchronize_session=False)
+    model.Driver
+    db.commit()
+    users = db.query(model.User).order_by(desc(model.User.id)).all()
+    return users
