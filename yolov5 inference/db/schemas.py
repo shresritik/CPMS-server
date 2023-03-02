@@ -5,6 +5,8 @@ class UserCreate(BaseModel):
     numOfPass: int
     numberPlate: str
     plateImg: str
+    licenseImg: str
+    expiry_date: str
 
 
 class DriverCreate(BaseModel):
