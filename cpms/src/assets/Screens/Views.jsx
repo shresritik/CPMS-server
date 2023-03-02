@@ -57,20 +57,28 @@ const Views = () => {
               <th>Number Plate Image</th>
               <th>Number Plate</th>
               <th>Number of Passengers</th>
+              <th>License Image</th>
+              <th>Expiry Date</th>
+              <th>Entry Date / Time</th>
               <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {search(views) &&
-              search(views).map((view) => (
+              search(views).map((view, id) => (
                 <tr className="text-center align-middle" key={view.id}>
                   <td>
-                    <h6>{view.id}</h6>
+                    <h6>{id + 1}</h6>
                   </td>
-                  <td>
+                  <td className="w-max">
                     {" "}
                     {/* <h6>{view.id}</h6> */}
-                    <img src={`data:image/jpeg;base64,${view.plateImg}`} />
+                    <div className="w-max">
+                      <img
+                        className="w-max"
+                        src={`data:image/jpeg;base64,${view.plateImg}`}
+                      />
+                    </div>
                   </td>
 
                   <td>
@@ -80,6 +88,27 @@ const Views = () => {
                   <td>
                     {" "}
                     <h6>{view.numOfPass}</h6>
+                  </td>
+                  <td className=" w-max">
+                    {" "}
+                    <div className="w-max">
+                      <img
+                        className="w-max"
+                        src={`http://localhost:8000${view.licenseImg}`}
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    {" "}
+                    <h6>{view.expiry_date}</h6>
+                  </td>
+                  <td>
+                    {" "}
+                    <h6>
+                      {view.createdAt.split("T")[0] +
+                        " / " +
+                        view.createdAt.split("T")[1].split(".")[0]}
+                    </h6>
                   </td>
                   <td>
                     {" "}
