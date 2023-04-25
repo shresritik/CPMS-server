@@ -1,12 +1,10 @@
-import { useEffect } from "react";
-import { useState } from "react";
 import Main from "./assets/Screens/Main";
 import Views from "./assets/Screens/Views";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navbars from "./assets/components/Navbar";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Start from "./assets/Screens/Start";
 import Exit from "./assets/Screens/Exit";
+import Register from "./assets/Screens/Register";
 
 function App() {
   return (
@@ -19,6 +17,7 @@ function App() {
           <Route path="/records" element={<Views />} />
           <Route path="/main" element={<Main />} />
           <Route path="/exit" element={<Exit />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </Router>
     </div>

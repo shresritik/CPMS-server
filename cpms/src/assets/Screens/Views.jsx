@@ -68,11 +68,11 @@ const Views = () => {
               search(views).map((view, id) => (
                 <tr className="text-center align-middle" key={view.id}>
                   <td>
-                    <h6>{id + 1}</h6>
+                    <h5>{id + 1}</h5>
                   </td>
                   <td className="w-max">
                     {" "}
-                    {/* <h6>{view.id}</h6> */}
+                    {/* <h5>{view.id}</h5> */}
                     <div className="w-max">
                       <img
                         className="w-max"
@@ -83,11 +83,11 @@ const Views = () => {
 
                   <td>
                     {" "}
-                    <h6>{view.numberPlate}</h6>
+                    <h5>{view.numberPlate}</h5>
                   </td>
                   <td>
                     {" "}
-                    <h6>{view.numOfPass}</h6>
+                    <h5>{view.numOfPass}</h5>
                   </td>
                   <td className=" w-max">
                     {" "}
@@ -100,15 +100,15 @@ const Views = () => {
                   </td>
                   <td>
                     {" "}
-                    <h6>{view.expiry_date}</h6>
+                    <h5>{view.expiry_date}</h5>
                   </td>
                   <td>
                     {" "}
-                    <h6>
+                    <h5>
                       {view.createdAt.split("T")[0] +
                         " / " +
                         view.createdAt.split("T")[1].split(".")[0]}
-                    </h6>
+                    </h5>
                   </td>
                   <td>
                     {" "}

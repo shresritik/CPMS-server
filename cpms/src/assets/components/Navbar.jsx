@@ -21,6 +21,15 @@ function Navbars() {
               <p className="text">Records</p>
             </NavLink>
           </Nav>{" "}
+          <NavLink
+            to="/register"
+            className={"justify-content-end   mt-2"}
+            style={({ isActive }) =>
+              isActive ? { color: "white" } : { color: "gray" }
+            }
+          >
+            <p className="text">Regsiter</p>
+          </NavLink>
         </Container>
       </Navbar>
     </>

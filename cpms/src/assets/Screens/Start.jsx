@@ -17,6 +17,10 @@ const Start = () => {
         <Link to="records" className=" link">
           Records
         </Link>
+        /
+        <Link to="register" className=" link">
+          Register
+        </Link>
       </p>
     </div>
   );

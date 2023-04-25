@@ -67,7 +67,7 @@ function Main() {
       const res = await response.json();
       console.log(res);
     } catch (error) {
-      alert(error);
+      console.log(error);
     }
   };
   useEffect(() => {
@@ -106,8 +106,8 @@ function Main() {
         <Form className="mt-5">
           <Form.Group className="mb-3">
             <Form.Label>
-              <h4>{licenseError && "Fingerprint Error Detected"}</h4>
-              <h4>Name: {!name ? "Loading..." : name}</h4>
+              <h3>{licenseError && "Fingerprint Error Detected"}</h3>
+              <h3>Name: {!name ? "Loading..." : name}</h3>
             </Form.Label>
           </Form.Group>
           <Form.Group className="mb-3">
@@ -128,7 +128,7 @@ function Main() {
           <Form.Group className="mb-3">
             <Form.Label>License Image</Form.Label>
             <br />
-            <h4>{licenseError && "Fingerprint Error "}</h4>
+            <h3>{licenseError && "Fingerprint Error "}</h3>
 
             <div>
               {driverImg && (
